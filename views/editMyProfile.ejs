@@ -1,0 +1,84 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+    <%include partials/head %>
+
+    <body>
+        <% include partials/navbar %>
+
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <% include partials/navigation %>
+                    </div>
+
+                    <div class="col-md-9">
+                        <!-- Website Overview -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading main-color-bg">
+                                <h3 class="panel-title">Edit My Profile</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <form action="/editMyProfile" method="post">
+                                    <div class="form-group">
+                                        <label for="inputEmail">UCO Email</label>
+                                        <input type="email" class="form-control" name="email" value="<%= user.email %>" readOnly>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputFirstName">First Name</label>
+                                        <input type="text" class="form-control" name="firstName" value="<%= user.firstName %>">
+                                        <% if(!initial && !user.checkFirstName()) { %><font style="color: red"><%= user.firstNameWarning() %></font><% } %>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputLastName">Last Name</label>
+                                        <input type="text" class="form-control" name="lastName" value="<%= user.lastName %>">
+                                        <% if(!initial && !user.checkLastName()) { %><font style="color: red"><%= user.lastNameWarning() %></font><% } %>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputUCOID">UCO ID</label>
+                                        <input type="text" class="form-control" name="UCOID" maxlength="8" value="<%= user.UCOID %>">
+                                        <% if(!initial && !user.checkUCOID()) { %><font style="color: red"><%= user.UCOIDWarning() %></font><% } %>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="inputDegree">Degree</label>
+                                        <select class="form-control" name="degree">
+                                            <option value="none" <% if(user.degree == "none") { %>selected<% } %>>Select Degree</option>
+                                            <option value="6100" <% if(user.degree == "6100") { %>selected<% } %>>Computer Science - 6100</option>
+                                            <option value="6101" <% if(user.degree == "6101") { %>selected<% } %>>Computer Science - Applied - 6101</option>
+                                            <option value="6102" <% if(user.degree == "6202") { %>selected<% } %>>Computer Science -Information Science - 6102</option>
+                                            <option value="6110" <% if(user.degree == "6110") { %>selected<% } %>>Software Engineering - 6110</option>
+                                            <option value="6660" <% if(user.degree == "6660") { %>selected<% } %>>Applied Mathematics and Computer Science - 6660</option>
+                                        </select>
+                                        <% if(!initial && !user.checkDegree()) { %><font style="color: red"><%= user.degreeWarning() %></font><% } %>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputPhoneNumber">Phone Number</label>
+                                        <input type="text" class="form-control" name="phoneNumber" value="<%= user.phoneNumber %>">
+                                        <% if(!initial && !user.checkPhoneNumber()) { %><font style="color: red"><%= user.phoneNumberWarning() %></font><% } %>
+                                    </div>              
+                            </div>
+
+                            <div class="panel-footer">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+
+                                <form action="/myProfile" method="get">
+                                    <button type="submit" class="btn btn-primary">Back</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

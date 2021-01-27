@@ -1,0 +1,7 @@
+#ignore directories
+node_modules/
+public/
+.vscode/
+
+#ignore all zip files
+*.zip

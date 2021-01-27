@@ -1,0 +1,106 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+    <%include partials/head %>
+
+    <body>
+        <% include partials/navbar %>
+
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <% include partials/navigation %>
+                    </div>
+
+                    <div class="col-md-9">
+                        <!-- Website Overview -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading main-color-bg">
+                                <h3 class="panel-title">User View</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <form action="/editUser" method="post">
+                                    <div class="form-group">
+                                        <label for="inputEmail">UCO Email</label>
+                                        <input type="email" class="form-control" name="email" value="<%= user.email %>" readOnly>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputFirstName">First Name</label>
+                                        <input type="text" class="form-control" name="firstName" value="<%= user.firstName %>">
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputLastName">Last Name</label>
+                                        <input type="text" class="form-control" name="lastName" value="<%= user.lastName %>">
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputUCOID">UCO ID</label>
+                                        <input type="text" class="form-control" name="UCOID" maxlength="8" value="<%= user.UCOID %>">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="inputDegree">Degree</label>
+                                        <select class="form-control" name="degree">
+                                            <option value="none" <% if(user.degree == "none") { %>selected<% } %>>Select Degree</option>
+                                            <option value="6100" <% if(user.degree == "6100") { %>selected<% } %>>Computer Science - 6100</option>
+                                            <option value="6101" <% if(user.degree == "6101") { %>selected<% } %>>Computer Science - Applied - 6101</option>
+                                            <option value="6102" <% if(user.degree == "6202") { %>selected<% } %>>Computer Science -Information Science - 6102</option>
+                                            <option value="6110" <% if(user.degree == "6110") { %>selected<% } %>>Software Engineering - 6110</option>
+                                            <option value="6660" <% if(user.degree == "6660") { %>selected<% } %>>Applied Mathematics and Computer Science - 6660</option>
+                                        </select>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="inputPhoneNumber">Phone Number</label>
+                                        <input type="text" class="form-control" name="phoneNumber" value="<%= user.phoneNumber %>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputVerified">Email Verified</label>
+                                        <select class="form-control" name="verified">
+                                            <option value="true" <% if(user.verified == true) { %>selected<% } %>>true</option>
+                                            <option value="false" <% if(user.verified == false) { %>selected<% } %>>false</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputVerified">Is Faculty</label>
+                                        <select class="form-control" name="isFaculty">
+                                            <option value="true" <% if(user.isFaculty == true) { %>selected<% } %>>true</option>
+                                            <option value="false" <% if(user.isFaculty == false) { %>selected<% } %>>false</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputVerified">Is Admin</label>
+                                        <select class="form-control" name="isAdmin">
+                                            <option value="true" <% if(user.isAdmin == true) { %>selected<% } %>>true</option>
+                                            <option value="false" <% if(user.isAdmin == false) { %>selected<% } %>>false</option>
+                                        </select>
+                                    </div>
+                        
+
+                            </div>
+
+                            <div class="panel-footer">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                    </div>
+                                </form>
+
+                                <form action="/viewUser" method="post">
+                                    <input type="hidden" name="email" value="<%= user.email %>">
+                                    <button type="submit" class="btn btn-primary">Back</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

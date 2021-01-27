@@ -1,0 +1,77 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+    <% include partials/head %>
+
+    <body>
+        <% include partials/navbar %>
+
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <% include partials/navigation %>
+                    </div>
+
+                    <div class="col-md-9">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading main-color-bg">
+                                <h3 class="panel-title"><%= advisement.title %></h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <img src="<%= advisement.image %>" width="450" height="250">
+                            </div>
+
+                            <div class="panel-body">
+                                <p><%= advisement.description %></p>
+                            </div>
+
+                            <div class="panel-footer">
+                                <form action="/manage" method="get">
+                                    <button type="submit" class="btn btn-primary">Back</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading main-color-bg">
+                                <h3 class="panel-title">Calendar - <%= date %></h3>
+                            </div>
+                            
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <% for (let iii = 0; iii < timeSlots.length; iii++) { %>
+                                        <tr<% if(taken[iii]) { %> class="bg-info"<% } %>>
+                                            <td><%= timeSlots[iii] %></td>
+                                            <td>
+                                                <% if(!taken[iii]) { %> 
+                                                <p>No appointment</p>
+                                                <% } else { %>
+                                                <p><%= names[iii] %></p>
+                                                <% } %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+
+                            <div class="panel-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

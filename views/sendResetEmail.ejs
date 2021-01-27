@@ -1,0 +1,40 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+    <% include partials/head %>
+
+    <body>
+        <!-- Top NavBar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Advisement Scheduler</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4"> 
+                    <form action="/sendResetEmail" method="post">                
+                        <div class="form-group">
+                            <label for="inputEmail">UCO Email</label>
+                            <input type="email" class="form-control" name="email" <% if(!email) { %>placeholder="UCO Email"<% } else { %>value="<%= email %>" <% } %>>
+                            <% if(err) { %><font style="color: red"><%= err %></font><% } %>
+                        </div>
+            
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Reset</button>
+                        </div>
+                    </form>
+                </div> 
+             </div>
+         </div>
+    </body>
+</html>

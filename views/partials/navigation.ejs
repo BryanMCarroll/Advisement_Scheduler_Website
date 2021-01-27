@@ -1,0 +1,8 @@
+<div class="list-group">
+    <a href="/myProfile" class="list-group-item<% if(nav == "myProfile") { %> active main-color-bg<% } %>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> My Profile</a>
+    <a href="/advisement" class="list-group-item<% if(nav == "advisement") { %> active main-color-bg<% } %>"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Advisement </a>
+    <% if(faculty) { %>
+    <a href="/manage" class="list-group-item<% if(nav == "manage") { %> active main-color-bg<% } %>"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Manage </a>
+    <a href="/users" class="list-group-item<% if(nav == "users") { %> active main-color-bg<% } %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users </a>
+    <% } %>
+</div>

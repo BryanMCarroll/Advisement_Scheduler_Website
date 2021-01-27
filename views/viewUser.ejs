@@ -1,0 +1,63 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+    <% include partials/head %>
+
+    <body>
+        <% include partials/navbar %>
+
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <% include partials/navigation %>
+                    </div>
+
+                    <div class="col-md-9">
+                        <!-- Website Overview -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading main-color-bg">
+                                <h3 class="panel-title">User View</h3>
+                            </div>
+
+                            <table class="table">
+                                <tbody>
+                                    <tr><td>Email</td><td><%= user.email %></td> </tr>
+                                    <tr><td>First Name</td><td><%= user.firstName %></td></tr>
+                                    <tr><td>Last Name</td><td><%= user.lastName %></td></tr>
+                                    <tr><td>UCO ID</td><td><%= user.UCOID %></td></tr>
+                                    <tr><td>Degree</td><td><%= user.degree %></td></tr>
+                                    <tr><td>Phone Number</td><td><%= user.phoneNumber %></td></tr>
+                                    <tr><td>Verified</td><td><% if(user.verified) { %>true<% } else { %>false<% } %></td></tr>
+                                    <tr><td>Is Faculty</td><td><% if(user.isFaculty) { %>true<% } else { %>false<% } %></td></tr>
+                                    <tr><td>Is Admin</td><td><% if(user.isAdmin) { %>true<% } else { %>false<% } %></td></tr>
+                                </tbody>
+                            </table>      
+
+                            <div class="panel-footer">
+                                <form action="/users" method="get">
+                                    <button type="submit" class="btn btn-primary">Back</button>
+                                </form>
+
+                                <form action="/deleteUserConfirm" method="post">
+                                    <input type="hidden" name="email" value="<%= user.email %>">
+                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                </form>
+
+                                <form action="/editUserPage" method="post">
+                                    <input type="hidden" name="email" value="<%= user.email %>">
+                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                </form>
+
+                                <form action="/resetUserPassword" method="post">
+                                    <input type="hidden" name="email" value="<%= user.email %>">
+                                    <button type="submit" class="btn btn-primary">Reset Password</button>
+                                </form
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

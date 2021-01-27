@@ -1,0 +1,90 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+    <% include partials/head %>
+
+    <body>
+        <!-- Top NavBar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Advisement Scheduler</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4"> 
+                    <form action="/register" method="post">                
+                        <div class="form-group">
+                            <label for="inputEmail">UCO Email</label>
+                            <input type="email" class="form-control" name="email" <% if(initial || (!initial && regInfo.email.length < 1)) { %>placeholder="UCO Email"<% } else { %>value="<%= regInfo.email %>" <% } %>>
+                            <% if(!initial && !regInfo.checkEmail()) { %><font style="color: red"><%= regInfo.emailWarning() %></font><% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputFirstName">First Name</label>
+                            <input type="text" class="form-control" name="firstName" <% if(initial || (!initial && regInfo.firstName.length < 1)) { %>placeholder="First Name"<% } else { %>value="<%= regInfo.firstName %>" <% } %>>
+                            <% if(!initial && !regInfo.checkFirstName()) { %><font style="color: red"><%= regInfo.firstNameWarning() %></font><% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputLastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" <% if(initial || (!initial && regInfo.lastName.length < 1)) { %>placeholder="Last Name"<% } else { %>value="<%= regInfo.lastName %>" <% } %>>
+                            <% if(!initial && !regInfo.checkLastName()) { %><font style="color: red"><%= regInfo.lastNameWarning() %></font><% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputUCOID">UCO ID</label>
+                            <input type="text" class="form-control" name="UCOID" maxlength="8" <% if(initial || (!initial && regInfo.UCOID.length < 1)) { %>placeholder="UCO ID"<% } else { %>value="<%= regInfo.UCOID %>" <% } %>>
+                            <% if(!initial && !regInfo.checkUCOID()) { %><font style="color: red"><%= regInfo.UCOIDWarning() %></font><% } %>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <% if(!initial && !regInfo.checkPasswordLength()) { %><font style="color: red"><%= regInfo.passwordLengthWarning() %></font><% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputVerifyPassword">Verify Password</label>
+                            <input type="password" class="form-control" name="verifyPassword" placeholder="Verify Password">
+                            <% if(!initial && !regInfo.checkVerifyPasswordLength()) { %><font style="color: red"><%= regInfo.passwordLengthWarning() %></font><% } %>
+                            <% if(!initial && !regInfo.comparePasswords()) { %><font style="color: red"><%= regInfo.comparePasswordsWarning() %></font><% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputDegree">Degree</label>
+                            <select class="form-control" name="degree">
+                                <option value="none" <% if(initial || regInfo.degree.localeCompare('none') == 0) { %>selected<% } %>>Select Degree</option>
+                                <option value="6100" <% if(!initial && regInfo.degree.localeCompare('6100') == 0) { %>selected<% } %>>Computer Science - 6100</option>
+                                <option value="6101" <% if(!initial && regInfo.degree.localeCompare('6101') == 0) { %>selected<% } %>>Computer Science - Applied - 6101</option>
+                                <option value="6102" <% if(!initial && regInfo.degree.localeCompare('6102') == 0) { %>selected<% } %>>Computer Science -Information Science - 6102</option>
+                                <option value="6110" <% if(!initial && regInfo.degree.localeCompare('6110') == 0) { %>selected<% } %>>Software Engineering - 6110</option>
+                                <option value="6660" <% if(!initial && regInfo.degree.localeCompare('6660') == 0) { %>selected<% } %>>Applied Mathematics and Computer Science - 6660</option>
+                            </select>
+                            <% if(!initial && !regInfo.checkDegree()) { %><font style="color: red"><%= regInfo.degreeWarning() %></font><% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPhoneNumber">Phone Number</label>
+                            <input type="text" class="form-control" name="phoneNumber" <% if(initial || (!initial && regInfo.UCOID.length < 1)) { %>placeholder="Phone Number"<% } else { %>value="<%= regInfo.phoneNumber %>" <% } %>>
+                            <% if(!initial && !regInfo.checkPhoneNumber()) { %><font style="color: red"><%= regInfo.phoneNumberWarning() %></font><% } %>
+                        </div>
+            
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div> 
+             </div>
+         </div>
+    </body>
+</html>

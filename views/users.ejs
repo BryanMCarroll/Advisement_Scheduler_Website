@@ -1,0 +1,57 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+    <% include partials/head %>
+
+    <body>
+        <% include partials/navbar %>
+
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <% include partials/navigation %>
+                    </div>
+
+                    <div class="col-md-9">
+                        <!-- Website Overview -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading main-color-bg">
+                                <h3 class="panel-title">Users</h3>
+                            </div>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Degree</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <% for (const user of users) { %>
+                                    <tr>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.firstName %></td>
+                                        <td><%= user.lastName %></td>
+                                        <td><%= user.degree %></td>
+                                        <td>
+                                            <form action="/viewUser" method="post">
+                                                <input type="hidden" name="email" value="<%= user.email %>">
+                                                <button type="submit" class="btn btn-primary">View</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
